@@ -23,7 +23,7 @@ const DataTable = <T,>({
   return (
     <Table className={cn('custom-scrollbar' , tableClassName)}>
       <TableHeader className={headerClassName}>
-        <TableRow className={cn('hover:bg-transparent!' , bodyRowClassName)}>
+        <TableRow className={cn('!hover:bg-transparent' , bodyRowClassName)}>
           {columns.map((column, index) => (
             <TableHead
               key={index}
@@ -37,7 +37,7 @@ const DataTable = <T,>({
       <TableBody>
         {
             data.map((row , i) => (
-                <TableRow key={ rowKey( row , i) } className={cn('overflow-hidden rounded-lg border-b border-purple-100/5 hover:bg-dark-400/30! relative' , bodyRowClassName)}>
+                <TableRow key={ rowKey( row , i) } className={cn('overflow-hidden rounded-lg border-b border-purple-100/5 !hover:bg-dark-400/30 relative' , bodyRowClassName)}>
                     {columns.map((column , j) => (
                         <TableCell key={j} className={cn('first:pl-5 py-4 last:pr-5' , bodyCellClassName)}>
                             {column.cell(row , i)}
