@@ -23,11 +23,11 @@ const DataTable = <T,>({
   return (
     <Table className={cn('custom-scrollbar' , tableClassName)}>
       <TableHeader className={headerClassName}>
-        <TableRow className={cn('hover:bg-transparent!' , bodyRowClassName)}>
+        <TableRow className={cn('hover:bg-transparent!' , headerRowClassName)}>
           {columns.map((column, index) => (
             <TableHead
               key={index}
-              className={cn('bg-dark-400,text-purple-100 py-4 first:pl-5 last:pr-5') }
+              className={cn('bg-dark-400,text-purple-100 py-4 first:pl-5 last:pr-5', headerCellClassName) }
             >
               {column.header}
             </TableHead>
