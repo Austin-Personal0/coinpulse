@@ -8,7 +8,7 @@ const API_KEY = process.env.COINGECKO_API_KEY
 if( !BASE_URL ) throw new Error('COINGECKO_BASE_URL is not defined')
 if( !API_KEY ) throw new Error('COINGECKO_API_KEY is not defined')
 
-export async function fetcher<T>( endpoint : string , params? : QueryParams , revalidate = 60) : Promise<T>{
+export async function fetcher<T>( method : string, endpoint : string , params? : QueryParams , revalidate = 60) : Promise<T>{
 
     // constructing the url with query params
     const url = qs.stringifyUrl({
@@ -17,6 +17,7 @@ export async function fetcher<T>( endpoint : string , params? : QueryParams , re
     } , { skipNull: true , skipEmptyString: true })
 
     const response = await fetch(url , {
+        method,
         headers : {
             'x-cg-demo-api-key' : API_KEY,
             'Content-Type' : 'application/json'
