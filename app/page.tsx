@@ -1,33 +1,28 @@
 import DataTable from "@/components/DataTable";
-import TrendingCoins from "@/components/TrendingCoins";
-import { cn } from "@/lib/utils";
+import CoinOverview from "@/components/home/CoinOverview";
+import TrendingCoins from "@/components/home/TrendingCoins";
+import SkeletonLoader from "@/components/skeleton-loader";
+import { fetcher } from "@/lib/coingecko.actions";
+import { cn, formatCurrency } from "@/lib/utils";
 import { TrendingDown, TrendingUp } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Suspense } from "react";
 
-export default function Home() {
+export default async function Home() {
 
+  
   return (
     <main className="main-container">
       <section className="home-grid">
-        <div id="coin-overview">
-          <div className="header p-2">
-            <Image
-              src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png"
-              alt="Bitcoin"
-              width={40}
-              height={20}
-              className="rounded-full"
-            />
-            <div className="info">
-              <p>Bitcoin / BTC</p>
-              <p>$4589386</p>
-            </div>
-          </div>
-        </div>
 
-        <p>Trending Coins</p>
-        <TrendingCoins/>
+        <Suspense fallback = {<SkeletonLoader type="card"/>}>
+          <CoinOverview/>
+        </Suspense>
+
+        <Suspense fallback = {<SkeletonLoader type="table"/>}>
+          <TrendingCoins/>
+        </Suspense>
       </section>
 
       <section className="w-full mt-7 space-y-4">
