@@ -27,7 +27,7 @@ const DataTable = <T,>({
           {columns.map((column, index) => (
             <TableHead
               key={index}
-              className={cn('bg-dark-400,text-purple-100 py-4 first:pl-5 last:pr-5', headerCellClassName) }
+              className={cn('bg-dark-400,text-purple-100 py-4 first:pl-5 last:pr-5', headerCellClassName , column.headClassName) }
             >
               {column.header}
             </TableHead>
@@ -39,7 +39,7 @@ const DataTable = <T,>({
             data.map((row , i) => (
                 <TableRow key={ i } className={cn('overflow-hidden rounded-lg border-b border-purple-100/5 hover:bg-dark-400/30! relative' , bodyRowClassName)}>
                     {columns.map((column , j) => (
-                        <TableCell key={j} className={cn('first:pl-5 py-4 last:pr-5' , bodyCellClassName)}>
+                        <TableCell key={j} className={cn('first:pl-5 py-4 last:pr-5' , bodyCellClassName , column.cellClassName)}>
                             {column.cell(row , i)}
                         </TableCell>
                     ))}

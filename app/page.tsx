@@ -1,4 +1,5 @@
 import DataTable from "@/components/DataTable";
+import Categories from "@/components/home/Categories";
 import CoinOverview from "@/components/home/CoinOverview";
 import TrendingCoins from "@/components/home/TrendingCoins";
 import SkeletonLoader from "@/components/skeleton-loader";
@@ -26,7 +27,9 @@ export default async function Home() {
       </section>
 
       <section className="w-full mt-7 space-y-4">
-        <p>Categories</p>
+        <Suspense fallback={<SkeletonLoader type="table"/>}>
+          <Categories/>
+        </Suspense>
       </section>
     </main>
   );

@@ -34,11 +34,13 @@ const CandlestickChart = (
             setOhlcData(data ?? [])
         } catch (error) {
             console.error('Error fetching OHLC data:', error)
+        } finally{
+            setLoading(false)
         }
     }
     const handlePeriodChange = (newPeriod : Period) => {
         if( newPeriod === period ) return
-
+        
         startTransition( async () => {
             setPeriod(newPeriod)
             await fetchOhlcData(newPeriod)
@@ -101,9 +103,9 @@ const CandlestickChart = (
             <div className="flex-1">{children}</div>
             <div className="button-group">
                 <span className="text-sm mx-2 font-medium text-purple-100/50">Period:</span>
-                {
-                    PERIOD_BUTTONS.map(({ value , label })=> <button key={value} className={ period === value ? 'config-button-active' : 'config-button'} onClick={() => { handlePeriodChange(value)}} disabled={loading}>{label}</button>)
-                }
+                    {
+                        PERIOD_BUTTONS.map(({ value , label })=> <button key={value} className={ period === value ? 'config-button-active' : 'config-button'} onClick={() => { handlePeriodChange(value)}} disabled={loading}>{label}</button>)
+                    }
                 
             </div>
         </div>
