@@ -43,12 +43,12 @@ const Page = async ({ searchParams } : NextPageProps ) => {
         },
         {
             header : 'Price',
-            cellClassName : '',
+            cellClassName : 'price-cell',
             cell : ( coin ) => formatCurrency(coin.current_price)
         },
         {
             header : '24H Change',
-            cellClassName : '',
+            cellClassName : 'change-cell',
             cell : ( coin ) => {
                 const isTrendingUp = coin.price_change_percentage_24h >= 0
 
@@ -62,7 +62,7 @@ const Page = async ({ searchParams } : NextPageProps ) => {
         },
         {
             header : 'Market Cap',
-            cellClassName : '',
+            cellClassName : 'market-cap-cell',
             cell : ( coin ) => formatCurrency(coin.market_cap)
         }
     ]
@@ -75,7 +75,7 @@ const Page = async ({ searchParams } : NextPageProps ) => {
         <div className='content'>
             <h4>All Coins</h4>
             <DataTable columns={columns} data={allCoins} rowKey={(_ , index) => index} tableClassName='coins-table'/>
-            <CoinsPagination currentPage={currentPage} totalPages={perPage} hasMorePages={hasMorePages}/>
+            <CoinsPagination currentPage={currentPage} totalPages={estimatedTotalPages} hasMorePages={hasMorePages}/>
         </div>
     </main>
   )

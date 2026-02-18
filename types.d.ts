@@ -23,17 +23,46 @@ interface ConverterProps {
   priceList: Record<string, number>;
 }
 
+interface Tick {
+  name:    string;
+  tickers: Ticker[];
+}
+
+
 interface Ticker {
-  market: {
-    name: string;
-  };
-  base: string;
-  target: string;
-  converted_last: {
-    usd: number;
-  };
-  timestamp: string;
-  trade_url: string;
+  base:                      string;
+  target:                    string;
+  market:                    Market;
+  last:                      number;
+  volume:                    number;
+  cost_to_move_up_usd:       number;
+  cost_to_move_down_usd:     number;
+  converted_last:            Converted
+  converted_volume:          Converted
+  trust_score:               null;
+  bid_ask_spread_percentage: number;
+  timestamp:                 Date;
+  last_traded_at:            Date;
+  last_fetch_at:             Date;
+  is_anomaly:                boolean;
+  is_stale:                  boolean;
+  trade_url:                 string;
+  token_info_url:            null;
+  coin_id:                   string;
+  target_coin_id:            string;
+}
+
+interface Converted{
+  btc :number;
+  eth :number;
+  usd :number;
+}
+
+interface Market {
+  name:                  string;
+  identifier:            string;
+  has_trading_incentive: boolean;
+  logo:                  string;
 }
 
 type Period = 'daily' | 'weekly' | 'monthly' | '3months' | '6months' | 'yearly' | 'max';
