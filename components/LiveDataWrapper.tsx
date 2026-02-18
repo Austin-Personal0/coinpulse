@@ -1,5 +1,6 @@
 import CandlestickChart from "./candlestickChart";
 import CoinHeader from "./CoinHeader";
+import Tickers from "./Tickers";
 import { Separator } from "./ui/separator";
 import React from "react";
 
@@ -26,6 +27,7 @@ const LiveDataWrapper = ({
       <div className="trend">
         <CandlestickChart coinId={coinId} />
       </div>
+      <Tickers coinId={coinId}/>
     </main>
   );
 };

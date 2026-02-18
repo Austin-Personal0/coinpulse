@@ -569,6 +569,10 @@
         }
       }
     }
+
+    .tickers-table {
+      @apply bg-dark-500 rounded-xl overflow-hidden mt-5;
+    }
   }
 
   #coins-page {

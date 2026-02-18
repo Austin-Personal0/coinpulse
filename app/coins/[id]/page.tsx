@@ -1,3 +1,4 @@
+import Converter from "@/components/Converter";
 import LiveDataWrapper from "@/components/LiveDataWrapper";
 import {fetcher} from "@/lib/coingecko.actions";
 import {formatCurrency} from "@/lib/utils";
@@ -47,17 +48,12 @@ const Page = async ( {params} : NextPageProps ) => {
     return <main id='coin-details-page'>
         <section className='primary'>
             <LiveDataWrapper coin={coinData} coinId={id}>
-                <h4>Exchang Listings</h4>
+                <h4>Exchange Listings</h4>
             </LiveDataWrapper>
-            <h1 className='text-3xl font-bold'>
-                Coin <strong>{id}</strong>
-            </h1>
-
-            <p>Trend Overview</p>
-            <p>Recent Trades</p>
-            <p>Exchange Listings</p>
         </section>
         <section className='secondary'>
+
+            <Converter symbol={coinData.symbol} icon={coinData.image.small} priceList={coinData.market_data.current_price}/>
             <div className='details'>
                 <h4>Coin Details</h4>
 
