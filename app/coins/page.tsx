@@ -75,7 +75,7 @@ const Page = async ({ searchParams } : NextPageProps ) => {
         <div className='content'>
             <h4>All Coins</h4>
             <DataTable columns={columns} data={allCoins} rowKey={(_ , index) => index} tableClassName='coins-table'/>
-            <CoinsPagination currentPage={currentPage} totalPages={perPage} hasMorePages={hasMorePages}/>
+            <CoinsPagination currentPage={currentPage} totalPages={estimatedTotalPages} hasMorePages={hasMorePages}/>
         </div>
     </main>
   )
