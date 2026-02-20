@@ -1,9 +1,12 @@
 import Converter from "@/components/Converter";
+import GainersLosers from "@/components/GainersLosers";
 import LiveDataWrapper from "@/components/LiveDataWrapper";
+import SkeletonLoader from "@/components/skeleton-loader";
 import {fetcher} from "@/lib/coingecko.actions";
 import {formatCurrency} from "@/lib/utils";
 import {ArrowUpRight} from "lucide-react";
 import Link from 'next/link'
+import { Suspense } from "react";
 
 const Page = async ( {params} : NextPageProps ) => {
     const { id } = await params
@@ -47,9 +50,11 @@ const Page = async ( {params} : NextPageProps ) => {
 
     return <main id='coin-details-page'>
         <section className='primary'>
-            <LiveDataWrapper coin={coinData} coinId={id}>
-                <h4>Exchange Listings</h4>
-            </LiveDataWrapper>
+            <Suspense fallback={<SkeletonLoader type="card"/>}>
+                <LiveDataWrapper coin={coinData} coinId={id}>
+                    <h4>Exchange Listings</h4>
+                </LiveDataWrapper>
+            </Suspense>
         </section>
         <section className='secondary'>
 
@@ -57,25 +62,27 @@ const Page = async ( {params} : NextPageProps ) => {
             <div className='details'>
                 <h4>Coin Details</h4>
 
-                <ul className='details-grid'>
-                    {
-                        coinDetails.map( ({ label, value , linkText , link  } , index ) => (
-                            <li key={index}>
-                                <p className={label}>{label}</p>
-                                {link ? (<div className='link'>
-                                    <Link href={link} target='_blank'>{linkText || label}</Link>
-                                    <ArrowUpRight size={16} />
+                <Suspense fallback={<SkeletonLoader type="card"/>}>
+                    <ul className='details-grid'>
+                        {
+                            coinDetails.map( ({ label, value , linkText , link  } , index ) => (
+                                <li key={index}>
+                                    <p className={label}>{label}</p>
+                                    {link ? (<div className='link'>
+                                        <Link href={link} target='_blank'>{linkText || label}</Link>
+                                        <ArrowUpRight size={16} />
 
-                                    </div>) : (<p className='text-base font-medium'>{value}</p>)
-                                }
-                            </li>
-                        ) )
-                    }
-                </ul>
-
+                                        </div>) : (<p className='text-base font-medium'>{value}</p>)
+                                    }
+                                </li>
+                            ) )
+                        }
+                    </ul>
+                </Suspense>
             </div>
-
-            <p>Top Gainers and Losers</p>
+            <Suspense fallback={<SkeletonLoader type="card"/>}>
+                <GainersLosers/>        
+            </Suspense>
         </section>
     </main>
 }
