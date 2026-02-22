@@ -125,6 +125,11 @@ interface SearchCoin {
   };
 }
 
+interface SearchResponse{
+  coins : SearchCoin[];
+  categories : Category[];
+}
+
 // Chart Section Props (used in ChartSection.tsx)
 interface ChartSectionProps {
   coinData: {
