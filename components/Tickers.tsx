@@ -14,7 +14,7 @@ const Tickers = async ({ coinId } : { coinId : string | undefined }) => {
     const columns : DataTableColumn<Ticker>[] = [
         {
             header: 'Exchange',
-            cellClassName : 'price-cell',
+            cellClassName : '',
             cell: (row: Ticker) => (
                 <div className='flex items-center gap-2'>
                     {row.market.logo && (
@@ -31,35 +31,35 @@ const Tickers = async ({ coinId } : { coinId : string | undefined }) => {
         },
         {
             header: 'Pair',
-            cellClassName : 'price-cell',
+            cellClassName : '',
             cell: (row: Ticker) => (
                 <span>{row.base}/{row.target}</span>
             )
         },
         {
             header: 'Price',
-            cellClassName : 'price-cell',
+            cellClassName : '',
             cell: (row: Ticker) => (
                 <span>{formatCurrency(row.converted_last.usd)}</span>
             )
         },
         {
             header: 'Volume (24h)',
-            cellClassName : 'price-cell',
+            cellClassName : '',
             cell: (row: Ticker) => (
                 <span>{formatCurrency(row.converted_volume.usd)}</span>
             )
         },
         {
             header: 'Spread',
-            cellClassName : 'price-cell',
+            cellClassName : '',
             cell: (row: Ticker) => (
                 <span>{formatPercentage(row.bid_ask_spread_percentage)}</span>
             )
         },
         {
             header: 'Updated',
-            cellClassName : 'price-cell',
+            cellClassName : '',
             cell: (row: Ticker) => (
                 <span>{timeAgo(row.last_fetch_at)}</span>
             )
@@ -87,13 +87,13 @@ const Tickers = async ({ coinId } : { coinId : string | undefined }) => {
 
   return (
     <main id='coins-page'>
-      <div className='content'>
+      <div className='content hide-scrollbar'>
         <h4>Exchange Listings</h4>
           <DataTable 
               columns={columns} 
               data={tickers} 
               rowKey={(row, index) => `${row.market.identifier}-${row.target}-${index}`}
-              tableClassName='coins-table'
+              tableClassName='coins-table hide-scrollbar'
           />
       </div>
     </main>
